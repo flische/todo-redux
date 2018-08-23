@@ -1,12 +1,11 @@
+import 'materialize-css/dist/css/materialize.min.css';
 import React from 'react';
-import '../assets/css/app.css';
-import logo from '../assets/images/logo.svg';
+
 
 const App = () => (
     <div>
-        <div className="app">
-            <img src={logo} className="logo rotate"/>
-            <h1>Welcome to React</h1>
+        <div className="container">
+            <h1 className="center">Redux To Do</h1>
         </div>
     </div>
 );

@@ -41,19 +41,19 @@ class AddItem extends Component {
 
         return (
             <div>
-                <h1 className="center">Add Item</h1>
+                <h1 className="center deep-purple-text">Add Task</h1>
                 <div className="row">
-                    <div className="col s12 right-align">
-                        <Link to="/" className="btn blue darken-2">Back to List</Link>
-                    </div>
                 </div>
                 <div className="row">
                     <form onSubmit={handleSubmit(this.handleAddItem)} className="col s12 m8 offset-m2">
                         <Field name="title" label="Title" component={this.renderInput}/>
                         <Field name="details" label="Details" component={this.renderInput}/>
                         <div className="row">
-                            <div className="col s12 right-align">
-                                <button className="btn blue darken-2">Add Item</button>
+                            <div className="col s4 center">
+                                <button className="btn pulse purple darken-">Add Task</button>
+                            </div>
+                            <div className="col s4 center">
+                                <Link to="/" className="btn blue darken-2">Back to List</Link>
                             </div>
                         </div>
                     </form>
@@ -82,7 +82,6 @@ function validate(values){
     return errors;
 }
 
-
 AddItem = reduxForm({
     form: 'add-item',
     validate: validate
@@ -90,4 +89,4 @@ AddItem = reduxForm({
 
 export default connect( null, { addItem: addItem })(AddItem);
 //     connect(mapStateToProps, {action creators} )(AddItem);
-//    we don't need to pass in mapStateToProps so we use 'null' instead
+//     we don't need to pass in mapStateToProps so we use 'null' instead

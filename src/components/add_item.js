@@ -18,7 +18,6 @@ class AddItem extends Component {
 
     renderInput( props ){
  // renderInput({label, input, meta: {touched, error} }){ // <--- destructuring props in the param of function!
-        console.log('Render Input Props: ', props);
 
         return (
             <div className="row">

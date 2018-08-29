@@ -91,3 +91,4 @@ AddItem = reduxForm({
 export default connect( null, { addItem: addItem })(AddItem);
 //     connect(mapStateToProps, {action creators} )(AddItem);
 //    we don't need to pass in mapStateToProps so we use 'null' instead
+

@@ -11,23 +11,13 @@ class List extends Component {
     render(){
         const listElements = this.props.list.map ( item => {
             return (
-                <li key={item._id}
-                    className="collection-item">
-                    {/*<Link to={`/item-details/${props.id}`}>*/}
-                        {/*{props.complete ?*/}
-                            {/*<span className="light-green-text text-darken-3 grey lighten-5">*/}
-                        {/*{props.title}*/}
-                                {/*<i className="right small material-icons light-green-text text-darken-1 grey lighten-5">turned_in</i>*/}
-                    {/*</span>*/}
-                            {/*:*/}
-                            {/*<span className="orange-text text-darken-1 grey lighten-5">*/}
-                        {/*{props.title}*/}
-                                {/*<i className="right small material-icons orange-text text-darken-1 grey lighten-5">turned_in_not</i>*/}
-                    {/*</span>*/}
-                        {/*}*/}
-                    {/*</Link>*/}
-                >{item.title}</li>
+                <li key={item._id} className="collection-item">
+                    <Link to={`/item/${item._id}`}>{ item.title }</Link>
+                </li>
             )
+                   
+                
+            
         });
 
         return (

@@ -19,6 +19,7 @@
     "babel-polyfill": "^6.26.0",
     "materialize-css": "^0.100.2",
     "react": "^16.4.0",
+    "react-axios": "^2.0.1",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

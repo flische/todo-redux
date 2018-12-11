@@ -28,21 +28,22 @@ export const getSingleItem = id => async dispatch => {
     }
 }
 
-// export function getSingleItem(id){
-//     const response = axios.get(`${BASE_URL}/todos/${id + API_KEY}`);
-
-//     return { 
-//         type: types.GET_SINGLE_ITEM,
-//         payload: response
-//     };
-// }
-
 export function addItem(item){
     const response = axios.post(`${BASE_URL}/todos${API_KEY}`, item);
 
     return {
         type: types.ADD_ITEM,
         payload: response
+    };
+}
+
+export function toggleComplete(id){
+    const response = axios.put(`${BASE_URL}/todos${id + API_KEY}`);
+
+    return {
+        type: types.TOGGLE_COMPLETE,
+        // payload:response.data.todo
+        payload:response
     };
 }
 
@@ -77,22 +78,3 @@ export function resetSingleView(){
 }
 
 
-
-
-// function makeActionCreator(type, ...argNames) {
-//     return function (...args) {
-//         const action = { type };
-//         argNames.forEach((arg, index) => {
-//             action[argNames[index]] = args[index];
-//         });
-//         return action
-//     }
-// }
-// ​
-// const ADD_TODO = 'ADD_TODO';
-// const EDIT_TODO = 'EDIT_TODO';
-// const REMOVE_TODO = 'REMOVE_TODO';
-// ​
-// export const addTodo = makeActionCreator(ADD_TODO, 'text');
-// export const editTodo = makeActionCreator(EDIT_TODO, 'id', 'text');
-// export const removeTodo = makeActionCreator(REMOVE_TODO, 'id');

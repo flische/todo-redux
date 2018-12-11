@@ -22,8 +22,8 @@ export function addItem(item){
     };
 }
 
-export function deleteItem(item){
-    const response = axios.post(`${BASE_URL}/todos${API_KEY}`, item);
+export function deleteItem(id){
+    const response = axios.delete(`${BASE_URL}/todos${id + API_KEY}`);
 
     return {
         type: types.DELETE_ITEM,
@@ -31,11 +31,12 @@ export function deleteItem(item){
     };
 }
 
-export function toggleComplete(item){
-    const response = axios.post(`${BASE_URL}/todos${API_KEY}`, item);
+export function toggleComplete(id){
+    const response = axios.put(`${BASE_URL}/todos${id + API_KEY}`);
 
     return {
         type: types.TOGGLE_COMPLETE,
-        payload:response
+        payload:response.data.todo
+        // payload:response
     };
 }

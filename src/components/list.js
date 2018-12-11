@@ -10,7 +10,7 @@ class List extends Component {
     }
 
     handleComplete = id => {
-        return () => this.props.actions.toggleComplete(id);
+        return () => this.props.toggleComplete(id);
     }
 
     handleDelete = id => {
@@ -22,8 +22,9 @@ class List extends Component {
             console.log('props: ', this.props.list);
             return (
                 <li key={item._id}
+                    id={item._id}
                     className="collection-item grey lighten-5">
-                    <Link to={`/add-item/${item.id}`}>
+                    <Link to={`/item-details/${item._id}`}>
                         {item.complete ?
                             <span className="light-green-text text-darken-3 grey lighten-5">
                                 {item.title}

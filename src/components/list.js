@@ -37,8 +37,13 @@ class List extends Component {
                             </span>
                         }
                     </Link>
-                </li>
+//                 <li key={item._id} className="collection-item">
+//                     <Link to={`/item/${item._id}`}>{ item.title }</Link>
+//                 </li>
             )
+                   
+                
+            
         });
 
         return (

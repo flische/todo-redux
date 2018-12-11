@@ -18,7 +18,6 @@ class AddItem extends Component {
 
     renderInput( props ){
  // renderInput({label, input, meta: {touched, error} }){ // <--- destructuring props in the param of function!
-        console.log('Render Input Props: ', props);
 
         return (
             <div className="row">
@@ -90,3 +89,4 @@ AddItem = reduxForm({
 export default connect( null, { addItem: addItem })(AddItem);
 //     connect(mapStateToProps, {action creators} )(AddItem);
 //     we don't need to pass in mapStateToProps so we use 'null' instead
+

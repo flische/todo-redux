@@ -8,7 +8,7 @@ export default (state = DEFAULT_STATE, action ) => {
     switch (action.type) {
         case types.TOGGLE_COMPLETE:
             return state.map(item => {
-                if(item.id !== action.id){
+                if(item.id == action.id){
                     return item;
                 }
 

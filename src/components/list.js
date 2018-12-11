@@ -22,7 +22,7 @@ class List extends Component {
             console.log('props: ', this.props.list);
             return (
                 <li key={item._id}
-                    id={item._id}
+                    item_id={item._id}
                     className="collection-item grey lighten-5">
                     <Link to={`/item-details/${item._id}`}>
                         {item.complete ?

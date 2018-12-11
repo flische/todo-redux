@@ -9,36 +9,59 @@ import config from '../config';
 
 class ItemDetails extends Component{
 
-    // state = {
-    //     itemDetails: {}
-    // };
+    state = {
+        itemDetails: {}
+    };
 
     async componentDidMount(){
         
         const { item_id } = this.props.match.params;
+        console.log("item_ID", item_id);
+
         const { BASE_URL, API_KEY } = config.api;
 
-        const response = await axios.get(`${BASE_URL}/todos/${item_id + API_KEY}`))
+        const response = await axios.get(`${BASE_URL}/todos/${item_id + API_KEY}`);
+        
+        this.setState({
+            itemDetails: response.data.todo
+        });
     }
 
+    async handleToggleCompleteItem() {
+        const todoItem = await this.props.toggleComplete(this.state.itemDetails._id);
+        
+        console.log('item details Toggle Complete todo item: ', todoItem);
 
-    handleToggleCompleteItem = async (id) => {
-        await this.props.toggleComplete(id);
+        this.setState({
+            itemDetails: todoItem
+        });
+
     }
 
-    handleDeleteItem = async (id) => {
-        await this.props.deleteItem(id);
+    async handleDeleteItem() {
+        console.log('Delete item: ', this.state.itemDetails._id);
+
+        // await this.props.deleteItem(id);
+        await this.props.delete(this.state.itemDetails._id);
 
         this.props.history.push('/');
     }
 
     render(){
-        const { todo } = this.props.match.params;
-        console.log('this.props.match.params',this.props.match.params);
-        console.log('props before todo', this.props);
-        console.log('props todo:', todo);
+        const { itemDetails } = this.state;
 
-        if(!todo){
+        console.log("Item Details", itemDetails);
+
+        // const { todo } = this.props.match.params;
+        console.log('this.props.match.params',this.props.match.params);
+        console.log('this.props.match',this.props.match);
+        console.log('props before todo', this.props);
+        // console.log('props todo:', todo);
+        console.log("this.state.itemDetails", this.state.itemDetails);
+        // const { itemDetails } = this.state.itemDetails;
+
+
+        if(!itemDetails){
             return <h1 className="grey-text">Loading...</h1>;
         }
 
@@ -67,12 +90,12 @@ class ItemDetails extends Component{
             <div className="">
                 <h1 className="center indigo-text darken-3">Item Details</h1><br/>
                 <div className="row card-panel indigo lighten-5">
-                    <h4 className="center indigo lighten-5"><b className="indigo lighten-5 indigo-text">Title:</b> {item.title}</h4><br/>
-                    <h5 className="indigo lighten-5"><b className="indigo lighten-5 indigo-text">Details:</b> {item.details}</h5><br/>
+                    <h4 className="center indigo lighten-5"><b className="indigo lighten-5 indigo-text">Title:</b> {itemDetails.title}</h4><br/>
+                    <h5 className="indigo lighten-5"><b className="indigo lighten-5 indigo-text">Details:</b> {itemDetails.details}</h5><br/>
                 </div>
                 <div className="row">
                     <div className="col s4 center">
-                        {item.complete ?
+                        {itemDetails.complete ?
                             <button
                                 className="btn orange darken-2"
                                 onClick={this.handleToggleCompleteItem.bind(this)}
@@ -96,7 +119,7 @@ class ItemDetails extends Component{
                         <Link to="/" className="btn purple darken-2">Back to List</Link>
                     </div>
                 </div>
-                {item.complete ?
+                {itemDetails.complete ?
                     <h5 className="row card-panel green lighten-4"><b className="green lighten-4 indigo-text">Status: </b>
                         <span className="green lighten-4 indigo-text">Item Complete!</span>
                     </h5>

@@ -28,8 +28,11 @@ class ItemDetails extends Component{
     }
 
     async handleToggleCompleteItem() {
-        const todoItem = await this.props.toggleComplete(this.state.itemDetails._id);
-        
+        const { item_id } = this.props.match.params;
+
+        const todoItem = await this.props.toggleComplete(item_id);
+        // const todoItem = await this.props.toggleComplete(this.state.itemDetails._id);
+
         console.log('item details Toggle Complete todo item: ', todoItem);
 
         this.setState({
@@ -38,7 +41,7 @@ class ItemDetails extends Component{
 
     }
 
-    async handleDeleteItem() {
+    async handleDeleteItem(id) {
         console.log('Delete item: ', this.state.itemDetails._id);
 
         // await this.props.deleteItem(id);

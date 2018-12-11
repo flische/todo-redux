@@ -36,7 +36,7 @@ export function toggleComplete(id){
 
     return {
         type: types.TOGGLE_COMPLETE,
-        payload:response.data.todo
-        // payload:response
+        // payload:response.data.todo
+        payload:response
     };
 }

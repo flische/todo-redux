@@ -2,6 +2,9 @@ export default {
     ADD_ITEM: 'add_item',
     DELETE_ITEM: 'delete_item',
     GET_ALL_LIST_DATA: 'get_all_list_data',
-    TOGGLE_COMPLETE: 'toggle_complete'
+    SET_VISIBILITY_FILTER : 'set_visibility_filter',
+    SHOW_COMPLETED : 'show_completed',
+    SHOW_ACTIVE :'show_active',
+    TOGGLE_COMPLETE: 'toggle_complete',
 };
 

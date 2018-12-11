@@ -35,7 +35,7 @@ export function toggleComplete(item){
     const response = axios.post(`${BASE_URL}/todos${API_KEY}`, item);
 
     return {
-        type:types.TOGGLE_COMPLETE,
+        type: types.TOGGLE_COMPLETE,
         payload:response
     };
 }

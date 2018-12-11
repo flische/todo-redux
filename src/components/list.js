@@ -26,14 +26,14 @@ class List extends Component {
                     <Link to={`/add-item/${item.id}`}>
                         {item.complete ?
                             <span className="light-green-text text-darken-3 grey lighten-5">
-                        {item.title}
+                                {item.title}
                             <i className="right small material-icons light-green-text text-darken-1 grey lighten-5">turned_in</i>
-                    </span>
-                            :
+                            </span>
+                        :
                             <span className="orange-text text-darken-1 grey lighten-5">
-                        {item.title}
-                            <i className="right small material-icons orange-text text-darken-1 grey lighten-5">turned_in_not</i>
-                    </span>
+                                {item.title}
+                                <i className="right small material-icons orange-text text-darken-1 grey lighten-5">turned_in_not</i>
+                            </span>
                         }
                     </Link>
                 </li>

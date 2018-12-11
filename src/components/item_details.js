@@ -3,16 +3,22 @@ import 'materialize-css/dist/css/materialize.min.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllListData, toggleComplete, deleteItem } from '../actions/actions';
+import axios from 'axios';
+import config from '../config';
 
 
-class itemDetails extends Component{
+class ItemDetails extends Component{
 
     // state = {
     //     itemDetails: {}
     // };
 
-    componentDidMount(){
-        this.props.getAllListData();
+    async componentDidMount(){
+        
+        const { item_id } = this.props.match.params;
+        const { BASE_URL, API_KEY } = config.api;
+
+        const response = await axios.get(`${BASE_URL}/todos/${item_id + API_KEY}`))
     }
 
 
@@ -27,28 +33,35 @@ class itemDetails extends Component{
     }
 
     render(){
-        const listElements = this.props.list.map ( item => {
-            console.log('props: ', this.props.list);
-            return (
-                <li key={item._id}
-                    id={item._id}
-                    className="collection-item grey lighten-5">
-                    <Link to={`/item-details/${item._id}`}>
-                        {item.complete ?
-                            <span className="light-green-text text-darken-3 grey lighten-5">
-                                {item.details}
-                            <i className="right small material-icons light-green-text text-darken-1 grey lighten-5">turned_in</i>
-                            </span>
-                        :
-                            <span className="orange-text text-darken-1 grey lighten-5">
-                                {item.details}
-                                <i className="right small material-icons orange-text text-darken-1 grey lighten-5">turned_in_not</i>
-                            </span>
-                        }
-                    </Link>
-                </li>
-            )
-        });
+        const { todo } = this.props.match.params;
+        console.log('this.props.match.params',this.props.match.params);
+        console.log('props before todo', this.props);
+        console.log('props todo:', todo);
+
+        if(!todo){
+            return <h1 className="grey-text">Loading...</h1>;
+        }
+
+            // return (
+            //     <li key={item._id}
+            //         id={item._id}
+            //         className="collection-item grey lighten-5">
+            //         <Link to={`/item-details/${item._id}`}>
+            //             {item.complete ?
+            //                 <span className="light-green-text text-darken-3 grey lighten-5">
+            //                     {item.details}
+            //                 <i className="right small material-icons light-green-text text-darken-1 grey lighten-5">turned_in</i>
+            //                 </span>
+            //             :
+            //                 <span className="orange-text text-darken-1 grey lighten-5">
+            //                     {item.details}
+            //                     <i className="right small material-icons orange-text text-darken-1 grey lighten-5">turned_in_not</i>
+            //                 </span>
+            //             }
+            //         </Link>
+            //     </li>
+            // );
+    
 
         return (
             <div className="">
@@ -99,7 +112,8 @@ class itemDetails extends Component{
 
 function mapStateToProps(state){
     return {
-        list: state.list.all // 'state.list' refers to reducers.js // 'list.all' refers to list_reducer.js
+        list: state.list.all, // 'state.list' refers to reducers.js // 'list.all' refers to list_reducer.js
+        todo: state.todo.item
     }
 }
 

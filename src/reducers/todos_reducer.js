@@ -1,21 +1,11 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    todo: {}
+    item: {}
 };
 
-const todo = (DEFAULT_STATE, action ) => {
+export default (state = DEFAULT_STATE, action ) => {
     switch (action.type) {
-        case types.ADD_ITEM:
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    details: action.details,
-                    complete: false
-                }
-            ];
-
         case types.TOGGLE_COMPLETE:
             return state.map(item => {
                 if(item.id !== action.id){
@@ -27,25 +17,13 @@ const todo = (DEFAULT_STATE, action ) => {
                     complete: !item.complete
                 };
             });
+        case types.DELETE_ITEM:
+            return [
+                ...state,
+            ];
 
         default: 
             return state;
     }
-};
-
-// const testAddTodo = () => {
-//     const prevState = [];
-//     const action = {
-//         type: 'ADD_TODO',
-//         id: 0, 
-//         text: 'learn Redux'
-//     };
-//     const newState = [
-//         {
-//             id:0,
-//             text: 'learn Redux',
-//             completed: false
-//         }
-//     ];
-// };
+}
 

@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllListData } from '../actions/actions';
+import { getAllListData, toggleComplete, deleteItem } from '../actions/actions';
 
 class List extends Component {
     componentDidMount(){
         this.props.getAllListData();
+    }
+
+    handleComplete = id => {
+        return () => this.props.actions.toggleComplete(id);
+    }
+
+    handleDelete = id => {
+        return () => this.props.actions.deleteItem(id);
     }
 
     render(){
@@ -57,7 +65,7 @@ function mapStateToProps(state){
     }
 }
 
-export default connect( mapStateToProps, { getAllListData: getAllListData, } )(List);
+export default connect( mapStateToProps, { getAllListData: getAllListData, toggleComplete: toggleComplete, deleteItem: deleteItem } )(List);
 // connect takes the stuff from above and adds it to props. Which we can now pass and use in componentDidMount
 
 // export default connect( mapStateToProps, actionCreators )(List);
